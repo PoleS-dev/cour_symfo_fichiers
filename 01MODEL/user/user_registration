@@ -1,0 +1,126 @@
+# 🎯 Créer un formulaire d'inscription utilisateur dans Symfony
+
+## 📌 Objectif
+Créer un système d'inscription pour permettre à un utilisateur de :
+- saisir ses informations (email ou username, mot de passe)
+- être enregistré en base de données
+- éventuellement être automatiquement connecté
+
+---
+
+## 1️⃣ Pré-requis
+
+Avant de faire le register, tu dois :
+✔️ Avoir une entité `User` générée avec `make:user`  
+✔️ Avoir configuré la sécurité (`security.yaml`)  
+✔️ Avoir créé la table en base avec une migration
+
+---
+
+## 2️⃣ Générer le formulaire d'inscription
+
+Commande à exécuter dans le terminal :
+
+```
+php bin/console make:registration-form
+```
+
+OU
+
+```
+symfony console make:registration-form
+```
+
+---
+
+## 3️⃣ Questions posées par Symfony (et leurs significations)
+
+---
+
+1️⃣ **"What class should be used to create the user?"**  
+👉 Symfony te demande l'entité à utiliser.  
+✅ Réponds :
+```
+App\Entity\User
+```
+
+---
+
+2️⃣ **"Do you want to send an email to verify the user's email address after registration?"**  
+👉 Si tu veux que l'utilisateur confirme son adresse email avant de se connecter.  
+✅ Pour commencer, tu peux répondre :
+```
+no
+```
+
+(Plus tard, tu pourras mettre `yes` pour ajouter une vérification par lien e-mail)
+
+---
+
+## 4️⃣ Ce que Symfony génère automatiquement :
+
+✔️ Un contrôleur : `src/Controller/RegistrationController.php`  
+✔️ Un formulaire : `src/Form/RegistrationFormType.php`  
+✔️ Une vue Twig : `templates/registration/register.html.twig`  
+✔️ Le hash du mot de passe avec le PasswordHasher  
+✔️ L'enregistrement automatique du `User` en base
+
+---
+
+## 5️⃣ Test de l’inscription
+
+Démarre ton serveur :
+
+```
+symfony server:start
+```
+
+Puis ouvre l’URL suivante dans le navigateur :
+
+```
+http://localhost:8000/register
+```
+
+Tu verras un formulaire avec les champs définis dans `RegistrationFormType.php`
+
+---
+
+## 6️⃣ Important : le mot de passe est sécurisé automatiquement
+
+Symfony utilise :
+
+```php
+UserPasswordHasherInterface $userPasswordHasher
+```
+
+Et hache le mot de passe comme ceci :
+
+```php
+$user->setPassword(
+    $userPasswordHasher->hashPassword(
+        $user,
+        $form->get('plainPassword')->getData()
+    )
+);
+```
+
+---
+
+## 🧠 À savoir
+
+- L’utilisateur est automatiquement persisté en base de données
+- Tu peux personnaliser les champs du formulaire dans `RegistrationFormType.php`
+- Tu peux ajouter d’autres champs dans l’entité `User` et les afficher dans le formulaire
+
+---
+
+✅ Résumé des étapes :
+1. Crée l'entité User → `make:user`
+2. Crée la table → `make:migration` + `migrate`
+3. Crée le système d'inscription → `make:registration-form`
+4. Teste sur `/register`
+5. Personnalise si besoin (champs, sécurité, redirection)
+
+---
+
+✨ Tu es prêt à faire une vraie inscription utilisateur dans Symfony !

@@ -1,0 +1,57 @@
+📦 Différence entre `node_modules/` et `vendor/`
+=================================================
+
+1. `node_modules/` (Node.js / npm / frontend)
+---------------------------------------------
+
+Utilisé par :
+  - Node.js, npm, yarn
+
+Contenu :
+  - Bibliothèques JavaScript/TypeScript
+    (ex: tailwindcss, react, etc.)
+
+Installé via :
+  - `npm install` ou `yarn install`
+
+Généré à partir de :
+  - `package.json` et `package-lock.json`
+
+Utilisé pour :
+  - Le frontend, outils de build, CSS, JS, Vite, Webpack, etc.
+
+À versionner ?
+  - ❌ NON. À exclure via `.gitignore`
+
+-------------------------------------------------
+
+2. `vendor/` (PHP / Symfony / Composer)
+----------------------------------------
+
+Utilisé par :
+  - PHP, Symfony, Laravel (via Composer)
+
+Contenu :
+  - Bibliothèques PHP (ex: symfony/http-foundation, doctrine/orm)
+
+Installé via :
+  - `composer install` ou `composer update`
+
+Généré à partir de :
+  - `composer.json` et `composer.lock`
+
+Utilisé pour :
+  - Le backend PHP (frameworks, composants, sécurité, etc.)
+
+À versionner ?
+  - ❌ NON. À exclure via `.gitignore`
+
+-------------------------------------------------
+
+Résumé comparatif rapide
+------------------------
+
+| Dossier       | Langage   | But                     | Installé avec   |
+|---------------|-----------|--------------------------|-----------------|
+| node_modules  | JavaScript| Frontend (JS, CSS, build)| npm / yarn      |
+| vendor        | PHP       | Backend (libs PHP)       | composer        |
