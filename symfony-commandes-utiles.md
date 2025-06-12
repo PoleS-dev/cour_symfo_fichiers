@@ -1,5 +1,6 @@
 # Commandes utiles Symfony – Récapitulatif
 
+
 ---
 
 ## 🏗️ GÉNÉRATION DE BASE
@@ -9,7 +10,7 @@ symfony new nom_projet --webapp         # Créer un projet Symfony complet
 symfony serve                           # Démarrer le serveur local
 symfony serve -d                        # Démarrer le serveur en arrière-plan
 symfony open:local                      # Ouvre l'application dans le navigateur
-symfony check:requirements              # Vérifier la configuration système
+symfony check:requirements             # Vérifier la configuration système
 ```
 
 ---
